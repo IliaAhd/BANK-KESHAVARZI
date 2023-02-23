@@ -1,0 +1,8 @@
+@font-face {
+  font-family: vazir;
+  src: url(font/IRANYekanRegular.ttf) format("tff");
+}
+
+body {
+  font-family: vazir !important;
+}
