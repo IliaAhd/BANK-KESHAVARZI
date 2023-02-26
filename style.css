@@ -90,6 +90,7 @@ nav {
   align-items: center;
   flex-wrap: wrap;
   padding: 0.8rem;
+  padding-inline: 2rem;
 }
 
 .logo {
@@ -119,4 +120,35 @@ nav {
 .login > button {
   border: none;
   cursor: pointer;
+}
+
+/* APP */
+.app {
+  padding-inline: 20%;
+  padding-block: 1.2rem;
+}
+
+@media (max-width: 50em) {
+  .app {
+    padding-inline: 10%;
+  }
+}
+
+/* BALANCE */
+.balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balance__label {
+  font-size: 1.3rem;
+}
+
+.balance__date {
+  color: #888;
+}
+
+.balance__value {
+  font-size: 2rem;
 }
