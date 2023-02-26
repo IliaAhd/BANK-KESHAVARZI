@@ -1,40 +1,64 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="Logo.png" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="Logo.png" type="image/x-icon" />
     <title>بانک کشاورزی</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <!-- Top Navigation -->
-        <nav>
-            <p class="welcome">برای شروع وارد شوید</p>
-            <img class="logo" src="Logo.png" alt="LOGO">
-            <form class="login">
-                <input class="login__input login__input--user" type="text" placeholder="نام کاربری">
-                <input class="login__input login__input--pin" type="password" placeholder="رمز">
-                <button class="login__btn">&larr;</button>
-            </form>
-        </nav>
+      <!-- TOP NAV -->
+      <nav>
+        <p class="welcome">برای شروع وارد شوید</p>
+        <img class="logo" src="Logo.png" alt="LOGO" />
+        <form class="login">
+          <input
+            class="login__input login__input--user"
+            type="text"
+            placeholder="نام کاربری"
+          />
+          <input
+            class="login__input login__input--pin"
+            type="password"
+            placeholder="رمز"
+          />
+          <button class="login__btn">&larr;</button>
+        </form>
+      </nav>
     </header>
     <main class="app">
-        <div class="balance">
-            <div>
-                <p class="balance__label">موجودی فعلی</p>
-                <p class="balance__date">
-                    تاریخ: <span>۱۴۰۱/۱۲/۰۱</span>
-                </p>
-            </div>
-            <p class="balance__value">۲۲۲,۰۰۰,۰۰۰ تومان</p>
+      <!-- BALANCE -->
+      <div class="balance">
+        <div>
+          <p class="balance__label">موجودی فعلی</p>
+          <p class="balance__date">
+            تاریخ:
+            <span>۱۴۰۱/۱۲/۰۱</span>
+          </p>
         </div>
-    </main>
-    <footer>
+        <p class="balance__value">۲۲۲,۰۰۰,۰۰۰ تومان</p>
+      </div>
+      <!-- MOVEMENTS -->
+      <div class="movements">
+        <div class="movements__row">
+          <div class="movements__type movements__type--deposit">واریز ۲</div>
+          <div class="movements__date">۳ روز پیش</div>
+          <div class="movements__value">۲۰,۰۰۰ تومان</div>
+        </div>
 
-    </footer>
+        <div class="movements__row">
+          <div class="movements__type movements__type--withdrawal">
+            برداشت ۱
+          </div>
+          <div class="movements__date">۱۴۰۱/۰۹/۰۹</div>
+          <div class="movements__value">۳۰,۰۰۰- تومان</div>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
     <script src="index.html"></script>
-</body>
+  </body>
 </html>

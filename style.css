@@ -124,13 +124,13 @@ nav {
 
 /* APP */
 .app {
-  padding-inline: 20%;
+  padding-inline: 10%;
   padding-block: 1.2rem;
 }
 
 @media (max-width: 50em) {
   .app {
-    padding-inline: 10%;
+    padding-inline: 5%;
   }
 }
 
@@ -139,6 +139,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 3rem;
 }
 
 .balance__label {
@@ -151,4 +152,75 @@ nav {
 
 .balance__value {
   font-size: 2rem;
+}
+
+/* MOVEMENTS */
+.movements {
+  width: 50%;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  height: 30rem;
+  overflow-y: scroll;
+}
+
+@media (max-width: 60em) {
+  .movements {
+    width: 100%;
+  }
+}
+
+.movements__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  padding-inline: 2rem;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+@media (max-width: 30em) {
+  .movements__row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .movements__date {
+    margin: auto;
+  }
+}
+
+.movements__row:last-child {
+  border-bottom: none;
+}
+
+.movements__type {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding-inline: 1.5rem;
+  border-radius: 1000vmax;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1.5rem;
+}
+
+.movements__type--deposit {
+  background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+
+.movements__type--withdrawal {
+  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+
+.movements__date {
+  color: #888;
+  font-size: 0.8rem;
+  margin-left: auto;
+  margin-top: 10px;
+}
+
+.movements__value {
+  font-size: 1.3rem;
 }
