@@ -225,3 +225,61 @@ nav {
 .movements__value {
   font-size: 1.3rem;
 }
+
+/* SUMMARY */
+.summary {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+
+.summary__label {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+.summary__value {
+  font-size: 1.4rem;
+}
+
+.summary__value--interest,
+.summary__value--in {
+  color: #66c873;
+}
+.summary__value--out {
+  color: #f5465d;
+}
+
+@media (max-width: 60em) {
+  .summary {
+    flex-direction: column;
+  }
+  .management {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
+
+.btn--sort {
+  border: none;
+  color: #111;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn--sort:hover {
+  color: #888;
+}
+
+.logout-timer {
+  color: #444;
+}
+
+.timer {
+  color: #111;
+  font-weight: 800;
+}
