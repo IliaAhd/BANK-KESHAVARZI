@@ -41,21 +41,73 @@
         </div>
         <p class="balance__value">۲۲۲,۰۰۰,۰۰۰ تومان</p>
       </div>
-      <!-- MOVEMENTS -->
-      <div class="movements">
-        <div class="movements__row">
-          <div class="movements__type movements__type--deposit">واریز ۲</div>
-          <div class="movements__date">۳ روز پیش</div>
-          <div class="movements__value">۲۰,۰۰۰ تومان</div>
-        </div>
-
-        <div class="movements__row">
-          <div class="movements__type movements__type--withdrawal">
-            برداشت ۱
+      <div class="main-section-app">
+        <!-- MOVEMENTS -->
+        <section class="movements">
+          <div class="movements__row">
+            <div class="movements__type movements__type--deposit">واریز ۲</div>
+            <div class="movements__date">۳ روز پیش</div>
+            <div class="movements__value">۲۰,۰۰۰ تومان</div>
           </div>
-          <div class="movements__date">۱۴۰۱/۰۹/۰۹</div>
-          <div class="movements__value">۳۰,۰۰۰- تومان</div>
-        </div>
+
+          <div class="movements__row">
+            <div class="movements__type movements__type--withdrawal">
+              برداشت ۱
+            </div>
+            <div class="movements__date">۱۴۰۱/۰۹/۰۹</div>
+            <div class="movements__value">۳۰,۰۰۰- تومان</div>
+          </div>
+        </section>
+
+        <!-- OPERATION: TRANSFERS -->
+        <section class="operations">
+          <div class="operation operation--transfer">
+            <h2>انتقال وجه</h2>
+            <form class="form form--transfer">
+              <div class="flex-col">
+                <input class="form__input form__input--to" type="text" />
+                <label class="form__label">انتقال به</label>
+              </div>
+              <div class="flex-col">
+                <input class="form__input form__input--amount" type="number" />
+                <label class="form__label">مبلغ</label>
+              </div>
+              <button class="form__btn form__btn--transfer">&lrarr;</button>
+            </form>
+          </div>
+
+          <!-- OPERATION: LOAN -->
+          <div class="operation operation--loan">
+            <h2>دریافت وام</h2>
+            <form class="form form--loan">
+              <div class="flex-col">
+                <input class="form__input form__input--loan" type="number" />
+                <label class="form__label">مبلغ</label>
+              </div>
+              <button class="form__btn form__btn--loan">&lrarr;</button>
+            </form>
+          </div>
+
+          <!-- OPERATION: CLOSE -->
+          <div class="operation operation--close">
+            <h2>حذف حساب</h2>
+            <form class="form form--close">
+              <div class="flex-col">
+                <input class="form__input form__input--user" type="text" />
+                <label class="form__label">نام کاربری</label>
+              </div>
+              <div class="flex-col">
+                <input
+                  class="form__input form__input--pin"
+                  type="password"
+                  maxlength="6"
+                />
+                <label class="form__label">رمز عبور</label>
+              </div>
+              <button class="form__btn form__btn--transfer">&lrarr;</button>
+            </form>
+          </div>
+        </section>
       </div>
       <!-- SUMMARY -->
       <section class="summary">
