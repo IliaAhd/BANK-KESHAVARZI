@@ -158,6 +158,7 @@ nav {
 /* APP'S MAIN SECTION */
 .main-section-app {
   display: flex;
+  gap: 1rem;
 }
 
 @media (max-width: 60em) {
