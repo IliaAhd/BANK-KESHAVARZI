@@ -31,9 +31,9 @@ const account4 = {
   interestRate: 1,
   pin: 4444,
 };
-
 const accounts = [account1, account2, account3, account4];
 
+// MOVEMENTS
 const containerMovements = document.querySelector(".movements");
 
 function displayMovements(movements) {
@@ -54,3 +54,16 @@ function displayMovements(movements) {
   });
 }
 displayMovements(account1.movements);
+
+// USERNAME CREATION
+function usernameCreation(accs) {
+  accs.forEach(
+    (acc) =>
+      (acc.username = acc.owner
+        .toLowerCase()
+        .split(" ")
+        .map((name) => name[0])
+        .join(""))
+  );
+}
+usernameCreation(accounts);
