@@ -1,11 +1,10 @@
 "use strict";
 
 // ACCOUNTS DATA
-
 const account1 = {
   owner: "Ilia Ahadi",
   movements: [
-    2000000, 450000, -4000000, 3000, -6500000, -1300000, 70000, 13000,
+    4000000, 450000, -2000000, 3000, 6500000, -1300000, 70000, 13000,
   ],
   interestRate: 1.2,
   pin: 1111,
@@ -54,6 +53,15 @@ function displayMovements(movements) {
   });
 }
 displayMovements(account1.movements);
+
+// BALANCE CALCULATION
+const labelBalance = document.querySelector(".balance__value");
+
+function displayBalance(acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance} تومان`;
+}
+displayBalance(account1);
 
 // USERNAME CREATION
 function usernameCreation(accs) {
