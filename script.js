@@ -3,9 +3,7 @@
 // ACCOUNTS DATA
 const account1 = {
   owner: "Ilia Ahadi",
-  movements: [
-    4000000, 450000, -2000000, 3000, 6500000, -1300000, 70000, 13000,
-  ],
+  movements: [4000000, 450000, -2000000, 3000, 6500000, -1300000, 70000, 13000],
   interestRate: 1.2,
   pin: 1111,
 };
@@ -62,6 +60,30 @@ function displayBalance(acc) {
   labelBalance.textContent = `${acc.balance} تومان`;
 }
 displayBalance(account1);
+
+// DISPLAY SUMMARY
+const summaryIn = document.querySelector(".summary__value--in");
+const summaryOut = document.querySelector(".summary__value--out");
+const summaryInterest = document.querySelector(".summary__value--interest");
+
+function displaySummary(acc) {
+  const sumIn = acc.movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  summaryIn.textContent = `${sumIn} تومان`;
+
+  const sumOut = acc.movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  summaryOut.textContent = `${sumOut} تومان`;
+
+  const sumInterest = acc.movements
+    .filter((mov) => mov > 0)
+    .map((depo) => (depo * acc.interestRate) / 100)
+    .reduce((acc, mov) => acc + mov, 0);
+  summaryInterest.textContent = `${sumInterest} تومان`;
+}
+displaySummary(account1);
 
 // USERNAME CREATION
 function usernameCreation(accs) {
