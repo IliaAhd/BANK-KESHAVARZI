@@ -36,11 +36,22 @@ const accounts = [account1, account2, account3, account4];
 
 // ELEMENTS
 const labelWelcome = document.querySelector(".welcome");
+const labelBalance = document.querySelector(".balance__value");
+
+const containerMovements = document.querySelector(".movements");
 const app = document.querySelector(".app");
 
-// MOVEMENTS
-const containerMovements = document.querySelector(".movements");
+const summaryIn = document.querySelector(".summary__value--in");
+const summaryOut = document.querySelector(".summary__value--out");
+const summaryInterest = document.querySelector(".summary__value--interest");
 
+const inputLogin = document.querySelector(".login__input--user");
+const inputLoginPin = document.querySelector(".login__input--pin");
+const btnLogin = document.querySelector(".login__btn");
+
+// FUNCTIONS
+
+// MOVEMENTS
 function displayMovements(movements) {
   containerMovements.innerHTML = "";
   movements.forEach((mov, i) => {
@@ -60,18 +71,12 @@ function displayMovements(movements) {
 }
 
 // BALANCE CALCULATION
-const labelBalance = document.querySelector(".balance__value");
-
 function displayBalance(acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${acc.balance} تومان`;
 }
 
 // DISPLAY SUMMARY
-const summaryIn = document.querySelector(".summary__value--in");
-const summaryOut = document.querySelector(".summary__value--out");
-const summaryInterest = document.querySelector(".summary__value--interest");
-
 function displaySummary(acc) {
   const sumIn = acc.movements
     .filter((mov) => mov > 0)
@@ -104,9 +109,6 @@ function usernameCreation(accs) {
 usernameCreation(accounts);
 
 // EVENT HANDLERS
-const inputLogin = document.querySelector(".login__input--user");
-const inputLoginPin = document.querySelector(".login__input--pin");
-const btnLogin = document.querySelector(".login__btn");
 
 let currentAcc;
 btnLogin.addEventListener("click", (e) => {
