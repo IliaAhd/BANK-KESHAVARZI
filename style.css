@@ -126,6 +126,9 @@ nav {
 .app {
   padding-inline: 10%;
   padding-block: 1.2rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 2.5s, visibility 2.5s;
 }
 
 @media (max-width: 50em) {
