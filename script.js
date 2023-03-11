@@ -53,6 +53,9 @@ const inputTransfer = document.querySelector(".form__input--to");
 const inputTransferAmount = document.querySelector(".form__input--amount");
 const btnTransfer = document.querySelector(".form__btn--transfer");
 
+const inputLoan = document.querySelector(".form__input--loan");
+const btnLoan = document.querySelector(".form__btn--loan");
+
 // FUNCTIONS
 
 // MOVEMENTS
@@ -171,5 +174,26 @@ btnTransfer.addEventListener("click", (e) => {
 
     // CLEAR FIELDS
     inputTransfer.value = inputTransferAmount.value = "";
+  }
+});
+
+// REQUEST LOAN
+btnLoan.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const amountLoan = +inputLoan.value;
+
+  if (
+    amountLoan > 0 &&
+    currentAcc.movements.some((mov) => mov >= amountLoan * 0.1)
+  ) {
+    // ADD LOAN
+    currentAcc.movements.push(amountLoan);
+
+    // UPDATE UI
+    updateUI(currentAcc);
+
+    // CLEAR FIELDS
+    inputLoan.value = "";
   }
 });
