@@ -385,3 +385,21 @@ nav {
   color: #111;
   font-weight: 800;
 }
+
+/* SCROLL */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100vmax;
+  background-color: #999;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #777;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #555;
+}
