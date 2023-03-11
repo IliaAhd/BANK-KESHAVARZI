@@ -124,6 +124,8 @@ nav {
 
 /* APP */
 .app {
+  max-width: 80rem;
+  margin-inline: auto;
   padding-inline: 10%;
   padding-block: 1.2rem;
   visibility: hidden;

@@ -49,6 +49,10 @@ const inputLogin = document.querySelector(".login__input--user");
 const inputLoginPin = document.querySelector(".login__input--pin");
 const btnLogin = document.querySelector(".login__btn");
 
+const inputTransfer = document.querySelector(".form__input--to");
+const inputTransferAmount = document.querySelector(".form__input--amount");
+const btnTransfer = document.querySelector(".form__btn--transfer");
+
 // FUNCTIONS
 
 // MOVEMENTS
@@ -108,8 +112,18 @@ function usernameCreation(accs) {
 }
 usernameCreation(accounts);
 
+function updateUI(acc) {
+  // DISPALY ACCOUNT BALANCE
+  displayBalance(acc);
+  // DISPLAY MOVEMENTS
+  displayMovements(acc.movements);
+  // DISPLAY ACCOUNT SUMMARY
+  displaySummary(acc);
+}
+
 // EVENT HANDLERS
 
+// LOGIN
 let currentAcc;
 btnLogin.addEventListener("click", (e) => {
   e.preventDefault();
@@ -128,11 +142,34 @@ btnLogin.addEventListener("click", (e) => {
     app.style.visibility = "visible";
     app.style.opacity = 1;
 
-    // DISPALY ACCOUNT BALANCE
-    displayBalance(currentAcc);
-    // DISPLAY MOVEMENTS
-    displayMovements(currentAcc.movements);
-    // DISPLAY ACCOUNT SUMMARY
-    displaySummary(currentAcc);
+    // UPDATE UI
+    updateUI(currentAcc);
+  }
+});
+
+// TRANSFER
+btnTransfer.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const transferTo = accounts.find(
+    (acc) => acc.username === inputTransfer.value
+  );
+  const transferAmount = +inputTransferAmount.value;
+
+  if (
+    currentAcc.balance >= transferAmount &&
+    transferAmount > 0 &&
+    transferTo &&
+    transferTo?.username !== currentAcc.username
+  ) {
+    // DOING TRANSFER
+    currentAcc.movements.push(-transferAmount);
+    transferTo.movements.push(transferAmount);
+
+    // UPDATE UI
+    updateUI(currentAcc);
+
+    // CLEAR FIELDS
+    inputTransfer.value = inputTransferAmount.value = "";
   }
 });
