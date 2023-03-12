@@ -56,6 +56,10 @@ const btnTransfer = document.querySelector(".form__btn--transfer");
 const inputLoan = document.querySelector(".form__input--loan");
 const btnLoan = document.querySelector(".form__btn--loan");
 
+const inputDelete = document.querySelector(".form__input--user");
+const inputDeletePin = document.querySelector(".form__input--pin");
+const btnDelete = document.querySelector(".form__btn--close");
+
 // FUNCTIONS
 
 // MOVEMENTS
@@ -196,4 +200,27 @@ btnLoan.addEventListener("click", (e) => {
     // CLEAR FIELDS
     inputLoan.value = "";
   }
+});
+
+// DELETE ACCOUNT
+btnDelete.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  if (
+    inputDelete.value === currentAcc.username &&
+    +inputDeletePin.value === currentAcc.pin
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.username === currentAcc.username
+    );
+
+    // DELETE ACCOUNT
+    accounts.splice(index, 1);
+
+    // HIDE UI
+    app.style.visibility = "hidden";
+    app.style.opacity = 0;
+  }
+
+  inputDelete.value = inputDeletePin.value = "";
 });
