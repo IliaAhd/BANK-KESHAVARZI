@@ -60,12 +60,17 @@ const inputDelete = document.querySelector(".form__input--user");
 const inputDeletePin = document.querySelector(".form__input--pin");
 const btnDelete = document.querySelector(".form__btn--close");
 
+const btnSort = document.querySelector(".btn--sort");
+
 // FUNCTIONS
 
 // MOVEMENTS
-function displayMovements(movements) {
+function displayMovements(movements, sort = false) {
   containerMovements.innerHTML = "";
-  movements.forEach((mov, i) => {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach((mov, i) => {
     const type = mov > 0 ? "واریز" : "برداشت";
     const typeClass = mov > 0 ? "deposit" : "withdrawal";
 
@@ -223,4 +228,15 @@ btnDelete.addEventListener("click", (e) => {
   }
 
   inputDelete.value = inputDeletePin.value = "";
+});
+
+// SORTING MOVEMENTS
+let sorted = false;
+btnSort.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  displayMovements(currentAcc.movements, !sorted);
+  sorted = !sorted;
+  if (sorted === true) btnSort.innerHTML = "&#8645; مرتب سازی";
+  else if (sorted === false) btnSort.innerHTML = "&downarrow; مرتب سازی";
 });
