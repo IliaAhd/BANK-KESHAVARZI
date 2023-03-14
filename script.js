@@ -105,23 +105,38 @@ const btnSort = document.querySelector(".btn--sort");
 
 // FUNCTIONS
 
-// MOVEMENTS
-function calcDisplayDate(date1, date2) {}
+// MOVEMENTS DATE
+function calcDisplayDate(date) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
-function displayMovements(movements, sort = false) {
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  const day = `${date.getDate()}`.padStart(2, 0);
+  return `${year}/${month}/${day}`;
+}
+
+// MOVEMENTS
+function displayMovements(acc, sort = false) {
   containerMovements.innerHTML = "";
 
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
 
   movs.forEach((mov, i) => {
     const type = mov > 0 ? "واریز" : "برداشت";
     const typeClass = mov > 0 ? "deposit" : "withdrawal";
+
+    const date = new Date(acc.movementsDates[i]);
+    const displayDate = calcDisplayDate(date);
 
     const html = `
     <div class="movements__row">
         <div class="movements__type movements__type--${typeClass}">${type} ${
       i + 1
     }</div>
+        <div class="movements__date">${displayDate}</div>
         <div class="movements__value">${mov} تومان</div>
     </div>
     `;
@@ -171,7 +186,7 @@ function updateUI(acc) {
   // DISPALY ACCOUNT BALANCE
   displayBalance(acc);
   // DISPLAY MOVEMENTS
-  displayMovements(acc.movements);
+  displayMovements(acc);
   // DISPLAY ACCOUNT SUMMARY
   displaySummary(acc);
 }
@@ -294,7 +309,7 @@ let sorted = false;
 btnSort.addEventListener("click", (e) => {
   e.preventDefault();
 
-  displayMovements(currentAcc.movements, !sorted);
+  displayMovements(currentAcc, !sorted);
   sorted = !sorted;
   if (sorted === true) btnSort.innerHTML = "&#8645; مرتب سازی";
   else if (sorted === false) btnSort.innerHTML = "&downarrow; مرتب سازی";
