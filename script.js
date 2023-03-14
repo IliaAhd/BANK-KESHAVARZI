@@ -7,6 +7,16 @@ const account1 = {
   movements: [4000000, 450000, -2000000, 3000, 6500000, -1300000, 70000, 13000],
   interestRate: 1.2,
   pin: 1111,
+  movementsDates: [
+    "2019-11-18T21:31:17.178Z",
+    "2019-12-23T07:42:02.383Z",
+    "2020-01-28T09:15:04.904Z",
+    "2023-02-01T10:17:24.185Z",
+    "2023-02-08T14:11:59.604Z",
+    "2023-03-07T17:01:17.194Z",
+    "2023-03-11T23:36:17.929Z",
+    "2023-03-12T10:51:36.790Z",
+  ],
 };
 
 const account2 = {
@@ -15,6 +25,16 @@ const account2 = {
   movements: [500000, 340000, -15000, -79000, -321000, -100000, 850000, -3000],
   interestRate: 1.5,
   pin: 2222,
+  movementsDates: [
+    "2022-11-01T13:15:33.035Z",
+    "2022-11-30T09:48:16.867Z",
+    "2022-12-25T06:04:23.907Z",
+    "2023-01-25T14:18:46.235Z",
+    "2023-01-05T16:33:06.386Z",
+    "2023-01-10T14:43:26.374Z",
+    "2023-02-25T18:49:59.371Z",
+    "2023-03-14T12:01:20.894Z",
+  ],
 };
 
 const account3 = {
@@ -23,6 +43,16 @@ const account3 = {
   movements: [100000, -20000, 3400, -30000, -200, 500, 40000, -4600],
   interestRate: 0.7,
   pin: 3333,
+  movementsDates: [
+    "2022-11-01T13:15:33.035Z",
+    "2022-11-30T09:48:16.867Z",
+    "2022-12-25T06:04:23.907Z",
+    "2023-01-25T14:18:46.235Z",
+    "2023-01-05T16:33:06.386Z",
+    "2023-01-10T14:43:26.374Z",
+    "2023-02-25T18:49:59.371Z",
+    "2023-03-14T12:01:20.894Z",
+  ],
 };
 
 const account4 = {
@@ -31,12 +61,23 @@ const account4 = {
   movements: [43000, 10000000, 7000000, 5000, 9000],
   interestRate: 1,
   pin: 4444,
+  movementsDates: [
+    "2019-11-18T21:31:17.178Z",
+    "2019-12-23T07:42:02.383Z",
+    "2020-01-28T09:15:04.904Z",
+    "2023-02-01T10:17:24.185Z",
+    "2023-02-08T14:11:59.604Z",
+    "2023-03-07T17:01:17.194Z",
+    "2023-03-11T23:36:17.929Z",
+    "2023-03-12T10:51:36.790Z",
+  ],
 };
 const accounts = [account1, account2, account3, account4];
 
 // ELEMENTS
 const labelWelcome = document.querySelector(".welcome");
 const labelBalance = document.querySelector(".balance__value");
+const labelDate = document.querySelector(".balance__date");
 
 const containerMovements = document.querySelector(".movements");
 const app = document.querySelector(".app");
@@ -65,6 +106,8 @@ const btnSort = document.querySelector(".btn--sort");
 // FUNCTIONS
 
 // MOVEMENTS
+function calcDisplayDate(date1, date2) {}
+
 function displayMovements(movements, sort = false) {
   containerMovements.innerHTML = "";
 
@@ -137,6 +180,13 @@ function updateUI(acc) {
 
 // LOGIN
 let currentAcc;
+
+// fake login for develop
+currentAcc = account1;
+updateUI(account1);
+app.style.visibility = "visible";
+app.style.opacity = 1;
+
 btnLogin.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -145,6 +195,15 @@ btnLogin.addEventListener("click", (e) => {
   if (currentAcc?.pin === +inputLoginPin.value) {
     // WELCOME MESSAGE
     labelWelcome.textContent = `${currentAcc.name.split(" ")[0]} خوش آمدید`;
+
+    // DISPLAY TIME
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    const day = `${now.getDate()}`.padStart(2, 0);
+    const hour = `${now.getHours()}`.padStart(2, 0);
+    const min = `${now.getMinutes()}`.padStart(2, 0);
+    labelDate.textContent = `تاریخ ورود: ${hour}:${min} , ${year}/${month}/${day}`;
 
     // CLEAR INPUT FIELDS
     inputLogin.value = inputLoginPin.value = "";
