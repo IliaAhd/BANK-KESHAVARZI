@@ -166,7 +166,7 @@ nav {
   gap: 1rem;
 }
 
-@media (max-width: 60em) {
+@media (max-width: 65em) {
   .main-section-app {
     flex-direction: column;
   }
@@ -181,7 +181,7 @@ nav {
   overflow-y: scroll;
 }
 
-@media (max-width: 60em) {
+@media (max-width: 65em) {
   .movements {
     width: 100%;
   }
@@ -253,7 +253,7 @@ nav {
   gap: 1rem;
 }
 
-@media (max-width: 60em) {
+@media (max-width: 65em) {
   .operations {
     width: 80%;
     margin-inline: auto;

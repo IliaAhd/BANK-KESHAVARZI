@@ -58,7 +58,7 @@ const account3 = {
 const account4 = {
   owner: "Sara Hoseini",
   name: "سارا حسینی",
-  movements: [43000, 10000000, 7000000, 5000, 9000],
+  movements: [43000, 10000000, 7000000, 5000, 190000, 200000, 500000, 120000],
   interestRate: 1,
   pin: 4444,
   movementsDates: [
@@ -109,6 +109,11 @@ const btnSort = document.querySelector(".btn--sort");
 function calcDisplayDate(date) {
   const calcDaysPassed = (date1, date2) =>
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+  const daysPassed = calcDaysPassed(new Date(), date);
+  if (daysPassed === 0) return "امروز";
+  if (daysPassed === 1) return "دیروز";
+  if (daysPassed <= 7) return `${daysPassed} روز پیش`;
 
   const year = date.getFullYear();
   const month = `${date.getMonth() + 1}`.padStart(2, 0);
@@ -195,13 +200,6 @@ function updateUI(acc) {
 
 // LOGIN
 let currentAcc;
-
-// fake login for develop
-currentAcc = account1;
-updateUI(account1);
-app.style.visibility = "visible";
-app.style.opacity = 1;
-
 btnLogin.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -252,6 +250,10 @@ btnTransfer.addEventListener("click", (e) => {
     currentAcc.movements.push(-transferAmount);
     transferTo.movements.push(transferAmount);
 
+    // ADD DATE
+    currentAcc.movementsDates.push(new Date().toISOString());
+    transferTo.movementsDates.push(new Date().toISOString());
+
     // UPDATE UI
     updateUI(currentAcc);
 
@@ -272,6 +274,9 @@ btnLoan.addEventListener("click", (e) => {
   ) {
     // ADD LOAN
     currentAcc.movements.push(amountLoan);
+
+    // ADD DATE
+    currentAcc.movementsDates.push(new Date().toISOString());
 
     // UPDATE UI
     updateUI(currentAcc);
