@@ -115,7 +115,11 @@ function calcDisplayDate(date) {
   if (daysPassed === 1) return "دیروز";
   if (daysPassed <= 7) return `${daysPassed} روز پیش`;
 
-  return new Intl.DateTimeFormat("fa-Ir").format(date);
+  return new Intl.DateTimeFormat("fa-IR").format(date);
+}
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat("fa-IR").format(value);
 }
 
 // MOVEMENTS
@@ -139,7 +143,7 @@ function displayMovements(acc, sort = false) {
       i + 1
     }</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov} تومان</div>
+        <div class="movements__value">${formatCurrency(mov)} تومان</div>
     </div>
     `;
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -149,7 +153,7 @@ function displayMovements(acc, sort = false) {
 // BALANCE CALCULATION
 function displayBalance(acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance} تومان`;
+  labelBalance.textContent = `${formatCurrency(acc.balance)} تومان`;
 }
 
 // DISPLAY SUMMARY
@@ -157,18 +161,18 @@ function displaySummary(acc) {
   const sumIn = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  summaryIn.textContent = `${sumIn} تومان`;
+  summaryIn.textContent = `${formatCurrency(sumIn)} تومان`;
 
   const sumOut = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  summaryOut.textContent = `${sumOut} تومان`;
+  summaryOut.textContent = `${formatCurrency(sumOut)} تومان`;
 
   const sumInterest = acc.movements
     .filter((mov) => mov > 0)
     .map((depo) => (depo * acc.interestRate) / 100)
     .reduce((acc, mov) => acc + mov, 0);
-  summaryInterest.textContent = `${sumInterest} تومان`;
+  summaryInterest.textContent = `${formatCurrency(sumInterest)} تومان`;
 }
 
 // USERNAME CREATION
