@@ -115,10 +115,7 @@ function calcDisplayDate(date) {
   if (daysPassed === 1) return "دیروز";
   if (daysPassed <= 7) return `${daysPassed} روز پیش`;
 
-  const year = date.getFullYear();
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const day = `${date.getDate()}`.padStart(2, 0);
-  return `${year}/${month}/${day}`;
+  return new Intl.DateTimeFormat("fa-Ir").format(date);
 }
 
 // MOVEMENTS
@@ -211,12 +208,16 @@ btnLogin.addEventListener("click", (e) => {
 
     // DISPLAY TIME
     const now = new Date();
-    const year = now.getFullYear();
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
-    labelDate.textContent = `تاریخ ورود: ${hour}:${min} , ${year}/${month}/${day}`;
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+
+    labelDate.textContent =
+      "تاریخ ورود: " + new Intl.DateTimeFormat("fa-IR", options).format(now);
 
     // CLEAR INPUT FIELDS
     inputLogin.value = inputLoginPin.value = "";
