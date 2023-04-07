@@ -278,16 +278,18 @@ btnLoan.addEventListener("click", (e) => {
     currentAcc.movements.some((mov) => mov >= amountLoan * 0.1)
   ) {
     // ADD LOAN
-    currentAcc.movements.push(amountLoan);
+    setTimeout(() => {
+      currentAcc.movements.push(amountLoan);
 
-    // ADD DATE
-    currentAcc.movementsDates.push(new Date().toISOString());
+      // ADD DATE
+      currentAcc.movementsDates.push(new Date().toISOString());
 
-    // UPDATE UI
-    updateUI(currentAcc);
+      // UPDATE UI
+      updateUI(currentAcc);
 
-    // CLEAR FIELDS
-    inputLoan.value = "";
+      // CLEAR FIELDS
+      inputLoan.value = "";
+    }, 3000);
   }
 });
 
