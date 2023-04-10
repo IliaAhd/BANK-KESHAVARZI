@@ -103,6 +103,8 @@ const btnDelete = document.querySelector(".form__btn--close");
 
 const btnSort = document.querySelector(".btn--sort");
 
+const labelTimer = document.querySelector(".timer");
+
 // FUNCTIONS
 
 // MOVEMENTS DATE
@@ -197,10 +199,34 @@ function updateUI(acc) {
   displaySummary(acc);
 }
 
+// INACTIVE LOGOUT TIMER
+function logoutTimer() {
+  let time = 150;
+
+  function tick() {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = "برای شروع وارد شوید";
+      app.style.opacity = 0;
+      app.style.visibility = "hidden";
+      currentAcc = null;
+    }
+    time--;
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+}
+
 // EVENT HANDLERS
 
 // LOGIN
-let currentAcc;
+let currentAcc, timer;
 btnLogin.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -233,6 +259,9 @@ btnLogin.addEventListener("click", (e) => {
 
     // UPDATE UI
     updateUI(currentAcc);
+
+    if (timer) clearInterval(timer);
+    timer = logoutTimer();
   }
 });
 
@@ -264,6 +293,10 @@ btnTransfer.addEventListener("click", (e) => {
 
     // CLEAR FIELDS
     inputTransfer.value = inputTransferAmount.value = "";
+
+    // RESET TIMER
+    clearInterval(timer);
+    timer = logoutTimer();
   }
 });
 
@@ -289,6 +322,10 @@ btnLoan.addEventListener("click", (e) => {
 
       // CLEAR FIELDS
       inputLoan.value = "";
+
+      // RESET TIMER
+      clearInterval(timer);
+      timer = logoutTimer();
     }, 3000);
   }
 });
