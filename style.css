@@ -3,6 +3,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-size: 20px;
 }
 
 /* Remove default margin */
@@ -97,6 +98,14 @@ nav {
   width: 4.5rem;
 }
 
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .login > input {
   border-radius: 100vmax;
   width: 7rem;
@@ -104,7 +113,6 @@ nav {
   text-align: center;
   background-color: #fff;
   border: 1px solid #fff;
-  margin-inline: 0.2rem;
   transition: border 0.4s;
 }
 
@@ -120,6 +128,8 @@ nav {
 .login > button {
   border: none;
   cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 900;
 }
 
 /* APP */
@@ -148,6 +158,11 @@ nav {
   margin-bottom: 3rem;
 }
 
+.balance-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .balance__label {
   font-size: 1.3rem;
 }
@@ -158,6 +173,15 @@ nav {
 
 .balance__value {
   font-size: 2rem;
+}
+
+@media (max-width: 33rem) {
+  .balance__label {
+    order: 2;
+  }
+  .balance__date {
+    order: 1;
+  }
 }
 
 /* APP'S MAIN SECTION */
