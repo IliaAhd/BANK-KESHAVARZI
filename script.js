@@ -120,7 +120,8 @@ function calcDisplayDate(date) {
   return new Intl.DateTimeFormat("fa-IR").format(date);
 }
 
-function formatCurrency(value) {
+// FORMAT NUMBER
+function formatNumber(value) {
   return new Intl.NumberFormat("fa-IR").format(value);
 }
 
@@ -145,7 +146,7 @@ function displayMovements(acc, sort = false) {
       i + 1
     }</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${formatCurrency(mov)} تومان</div>
+        <div class="movements__value">${formatNumber(mov)} تومان</div>
     </div>
     `;
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -155,7 +156,7 @@ function displayMovements(acc, sort = false) {
 // BALANCE CALCULATION
 function displayBalance(acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${formatCurrency(acc.balance)} تومان`;
+  labelBalance.textContent = `${formatNumber(acc.balance)} تومان`;
 }
 
 // DISPLAY SUMMARY
@@ -163,18 +164,18 @@ function displaySummary(acc) {
   const sumIn = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  summaryIn.textContent = `${formatCurrency(sumIn)} تومان`;
+  summaryIn.textContent = `${formatNumber(sumIn)} تومان`;
 
   const sumOut = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  summaryOut.textContent = `${formatCurrency(sumOut)} تومان`;
+  summaryOut.textContent = `${formatNumber(sumOut)} تومان`;
 
   const sumInterest = acc.movements
     .filter((mov) => mov > 0)
     .map((depo) => (depo * acc.interestRate) / 100)
     .reduce((acc, mov) => acc + mov, 0);
-  summaryInterest.textContent = `${formatCurrency(sumInterest)} تومان`;
+  summaryInterest.textContent = `${formatNumber(sumInterest)} تومان`;
 }
 
 // USERNAME CREATION
@@ -204,10 +205,12 @@ function logoutTimer() {
   let time = 150;
 
   function tick() {
-    const min = String(Math.trunc(time / 60)).padStart(2, 0);
-    const sec = String(time % 60).padStart(2, 0);
+    const min = formatNumber(Math.trunc(time / 60));
+    const sec = formatNumber(time % 60);
 
-    labelTimer.textContent = `${min}:${sec}`;
+    labelTimer.textContent = `${String(min).padStart(2, "۰")}:${String(
+      sec
+    ).padStart(2, "۰")}`;
 
     if (time === 0) {
       clearInterval(timer);

@@ -382,6 +382,8 @@ nav {
 }
 
 .timer {
+  display: inline-block;
+  width: 2rem;
   color: #111;
   font-weight: 800;
 }
